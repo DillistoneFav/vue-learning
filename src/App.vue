@@ -1,30 +1,45 @@
+<template>
+  <div class="app">
+    <h1 class="postsHeader">Список постов</h1>
+    <post-form
+        :posts="posts"
+        @create="createPost"
+    />
+    <post-list
+        :posts="posts"
+    />
+  </div>
+</template>
+
 <script lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
 import {defineComponent} from "vue";
+import type { IPost } from './types/IPost';
+import PostForm from './components/PostForm.vue'
+import PostList from './components/PostList.vue';
 
 export default defineComponent({
   name: "App",
-  components: {},
+  components: {
+    PostForm,
+    PostList
+  },
   data() {
-    let likes: number = 0
+    const posts: IPost[] = [
+      {id: 0, title: "post n1", description: "just first post"},
+      {id: 1, title: "post n2", description: "just second post"},
+      {id: 2, title: "post n3", description: "just third post"},
+    ]
     return {
-      likes,
+      posts,
     }
   },
   methods: {
-    addLike() {
-      this.likes += 1
-    },
+    createPost(post: IPost) {
+      this.posts.push(post)
+    }
   }
 })
 </script>
-
-<template>
-  <div class="app">
-    <button @click="addLike">add like</button>
-    <div>{{likes}}</div>
-  </div>
-</template>
 
 <style>
   *{
@@ -32,6 +47,9 @@ export default defineComponent({
     padding: 0;
     box-sizing: border-box;
   }
+</style>
+
+<style scoped>
   .app{
     width: 100%;
     height: 100vh;
@@ -40,6 +58,11 @@ export default defineComponent({
     display: flex;
     align-items: center;
     flex-direction: column;
+    overflow-y: auto;
+  }
+  .postsHeader{
+    font-size: 45px;
+    margin-bottom: 1rem;
   }
 </style>
 
