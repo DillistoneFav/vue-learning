@@ -26,7 +26,7 @@ export default defineComponent({
   data() {
     const posts: IPost[] = [
       {id: 0, title: "post n1", description: "just first post"},
-      {id: 1, title: "post n2", description: "just second post"},
+      {id: 1, title: "post n2", description: "just second 1ost"},
       {id: 2, title: "post n3", description: "just third post"},
     ]
     return {

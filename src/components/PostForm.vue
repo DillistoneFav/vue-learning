@@ -1,20 +1,21 @@
 <template>
   <form @submit.prevent>
     <div class="inputsWrapper">
-      <input
+      <my-input
           v-model="inputValues.title"
-          type="text"
-          class="inputForPosts"
           placeholder="Название"
       />
-      <input
+      <my-input
           v-model="inputValues.description"
-          type="text"
-          class="inputForPosts"
           placeholder="Описание"
-      >
+      />
     </div>
-    <button @click="createPost">Создать пост</button>
+    <my-button
+        @click="createPost"
+        class="formButton"
+    >
+      Создать пост
+    </my-button>
   </form>
 </template>
 
@@ -22,6 +23,7 @@
 import {defineComponent} from "vue";
 import type {PropType} from "vue";
 import type {IPost} from "@/types/IPost"
+import MyInput from "@/UI/MyInput.vue";
 
 interface inputValuesProps {
   title: string,
@@ -30,6 +32,7 @@ interface inputValuesProps {
 
 export default defineComponent({
   name: "PostForm",
+  components: {MyInput},
   props: {
     posts: {
       type: Array as PropType<IPost[]>,
@@ -65,27 +68,11 @@ form{
 }
 form .inputsWrapper{
   display: flex;
+  flex-direction: column;
+  height: 75px;
   justify-content: space-between;
-}
-form input{
-  width: 49%;
-  height: 30px;
-  background: none;
-  outline: none;
-  color: #fff;
-  border-bottom: 2px solid #fff;
-  border-top: none;
-  border-right: none;
-  border-left: none;
 }
 form button{
   margin-top: 1rem;
-  outline: none;
-  background: none;
-  color: #fff;
-  border-radius: 10px;
-  border: 2px solid #fff;
-  height: 30px;
-  cursor: pointer;
 }
 </style>
