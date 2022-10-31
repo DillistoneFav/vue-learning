@@ -1,9 +1,14 @@
 <template>
-  <div class="postsContainer">
+  <div class="postsContainer" v-if="posts.length > 0">
     <post-item
         :post="post"
         v-for="post in posts"
+        :key="post.id"
+        @remove="$emit('remove', post)"
     />
+  </div>
+  <div v-else class="noPosts">
+    <span>Список постов пуст</span>
   </div>
 </template>
 
@@ -29,5 +34,11 @@ export default defineComponent({
   .postsContainer{
     padding: 1rem;
     border-top: 2px solid brown;
+  }
+  .noPosts span{
+    text-align: center;
+    font-size: 24px;
+    color: red;
+    font-weight: bold;
   }
 </style>

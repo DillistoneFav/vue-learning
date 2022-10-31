@@ -1,5 +1,7 @@
 export interface IPost {
     id: number,
     title: string,
-    description: string,
+    body: string,
 }
+
+export type sortPost = "id" | "title" | "body"

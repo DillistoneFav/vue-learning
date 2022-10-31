@@ -6,7 +6,7 @@
           placeholder="Название"
       />
       <my-input
-          v-model="inputValues.description"
+          v-model="inputValues.body"
           placeholder="Описание"
       />
     </div>
@@ -27,7 +27,7 @@ import MyInput from "@/UI/MyInput.vue";
 
 interface inputValuesProps {
   title: string,
-  description: string
+  body: string
 }
 
 export default defineComponent({
@@ -50,7 +50,7 @@ export default defineComponent({
       let newPost = {
         id: Math.max(...this.posts.map(item => item.id), 0) + 1,
         title: this.inputValues.title,
-        description: this.inputValues.description
+        body: this.inputValues.body
       }
       this.$emit('create', newPost)
       this.inputValues = {} as inputValuesProps

@@ -2,11 +2,16 @@
   <div class="post">
     <div class="postInfo">
       <div class="postTitleContainer"><span>Название:</span>{{post.title}}</div>
-      <div class="postDescriptionContainer"><span>Описание:</span>{{post.description}}</div>
+      <div class="postDescriptionContainer"><span>Описание:</span>{{post.body}}</div>
     </div>
     <div class="buttonsContainer">
       <my-button>Редактировать пост</my-button>
-      <my-button class="deleteButton">Удалить пост</my-button>
+      <my-button
+          class="deleteButton"
+          @click="$emit('remove', post)"
+      >
+        Удалить пост
+      </my-button>
     </div>
   </div>
 </template>
@@ -43,6 +48,8 @@ export default defineComponent({
   flex-direction: column;
   justify-content: center;
   width: 90%;
+  margin-right: 0.5rem;
+  border-right: 2px solid lightblue;
 }
 .post button{
   width: 150px;
@@ -53,9 +60,15 @@ export default defineComponent({
 .post .postTitleContainer, .post .postDescriptionContainer{
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
-  word-break: break-all;
+  word-break: normal;
   padding-right: 0.5rem;
+}
+.post .postTitleContainer{
+  border-bottom: 2px solid lightblue;
+  padding-bottom: 0.5rem;
+}
+.post .postDescriptionContainer{
+  padding-top: 0.5rem;
 }
 .post span{
   font-weight: bold;
@@ -65,7 +78,7 @@ export default defineComponent({
 .post .buttonsContainer{
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
 }
 .post .buttonsContainer button:first-of-type{
   margin-bottom: 0.5rem;
